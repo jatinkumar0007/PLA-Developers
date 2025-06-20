@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLA Developers - Premium Real Estate Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #f0f8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(30, 144, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                linear-gradient(135deg, #0a1428 0%, #1e3c72 25%, #2a5298 50%, #1e3c72 75%, #0f1b2e 100%);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.03) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
+            animation: aurora 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 1px, transparent 1px);
+            background-size: 100px 100px;
+            animation: starfield 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content .tagline {
+            font-size: 1.4rem;
+            color: #ffd700;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: glow 2s ease-in-out infinite alternate, fadeInUp 1s ease 0.2s both;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .hero-content h1 {
+            font-size: 5.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both, textShine 3s ease-in-out infinite;
+            font-weight: 800;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff 0%, #ffd700 25%, #ffffff 50%, #e3f2fd 75%, #ffffff 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .hero-content h1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease 0.6s both;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.8s both;
+            margin-bottom: 4rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4a 50%, #ffd700 100%);
+            background-size: 200% 200%;
+            color: #1e3c72;
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            box-shadow: 
+                0 10px 30px rgba(255, 215, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(255, 215, 0, 0.6),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            background-position: 100% 100%;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-secondary {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1.5rem 3rem;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 215, 0, 0.8);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-secondary:hover::before {
+            opacity: 1;
+        }
+
+        .hero-decoration {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .scroll-indicator {
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 8px;
+            background: #ffd700;
+            border-radius: 2px;
+            animation: scroll 2s ease-in-out infinite;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-elements::before,
+        .floating-elements::after {
+            content: '';
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 12s ease-in-out infinite;
+        }
+
+        .floating-elements::before {
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: 5%;
+            animation-delay: -4s;
+        }
+
+        .floating-elements::after {
+            width: 200px;
+            height: 200px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -8s;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: #f8fafc;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #1e3c72;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #1e3c72;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+
+        /* Featured Properties */
+        .properties {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .property-image {
+            height: 250px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .property-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        .property-info {
+            padding: 1.5rem;
+        }
+
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        .property-location {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            height: 400px;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: #1e3c72;
+            color: white;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: #ffd700;
+            width: 40px;
+        }
+
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #f0f8ff;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            color: #333;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ffd700, #ffed4a);
+            color: #1e3c72;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #0f1419;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1); 
+                opacity: 0.6;
+            }
+            33% { 
+                transform: translateY(-30px) rotate(120deg) scale(1.1); 
+                opacity: 0.8;
+            }
+            66% { 
+                transform: translateY(-15px) rotate(240deg) scale(0.9); 
+                opacity: 1;
+            }
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.3); }
+        }
+
+        @keyframes textShine {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes aurora {
+            0%, 100% { opacity: 0.3; transform: rotate(0deg); }
+            50% { opacity: 0.7; transform: rotate(180deg); }
+        }
+
+        @keyframes starfield {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-100px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.5; transform: translateX(-50%) translateY(15px); }
+            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .hero-content .tagline {
+                font-size: 1.1rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .cta-button, .cta-secondary {
+                padding: 1.2rem 2.5rem;
+                font-size: 1.1rem;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .floating-elements::before,
+            .floating-elements::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">PLA Developers</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#properties">Properties</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="floating-elements"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="tagline">Premium Real Estate Solutions</div>
+                <h1>Building Dreams, Creating Futures</h1>
+                <p class="subtitle">Transform your vision into reality with prime agricultural land and residential plots in Kotkasim's most sought-after locations. Where investment meets opportunity.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="cta-button">Get Started Today</a>
+                    <a href="#properties" class="cta-secondary">Explore Properties</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-decoration">
+            <div class="scroll-indicator"></div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3>Property Development</h3>
+                    <p>Comprehensive real estate development from concept to completion, ensuring quality construction and timely delivery.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏡</div>
+                    <h3>Residential Projects</h3>
+                    <p>Modern residential complexes and independent houses designed for comfortable living with all essential amenities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏢</div>
+                    <h3>Commercial Spaces</h3>
+                    <p>Strategic commercial developments including retail spaces, offices, and mixed-use complexes in prime locations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Investment Advisory</h3>
+                    <p>Expert guidance on real estate investments, market analysis, and portfolio management for maximum returns.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📋</div>
+                    <h3>Project Management</h3>
+                    <p>End-to-end project management services ensuring smooth execution, quality control, and on-time delivery.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>After-Sales Support</h3>
+                    <p>Comprehensive after-sales service including maintenance, warranty support, and customer assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="properties" class="properties">
+        <div class="container">
+            <h2 class="section-title">Featured Properties</h2>
+            <div class="properties-grid">
+                <div class="property-card">
+                    <div class="property-image">
+                        <span>Agriculture Land</span>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">Contact Us for Pricing</div>
+                        <div class="property-location">Kotkasim, Near Sainik Vishram Grah</div>
+                        <p>Prime agricultural land with fertile soil, good water access, and excellent connectivity for farming ventures.</p>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-image">
+                        <span>Residential Plots</span>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">₹6,200 per sq. Yard onwards</div>
+                        <div class="property-location">Rewari-Kotkasim Road</div>
+                        <p>Well-planned residential plots with clear titles, proper approvals, and essential infrastructure development.</p>
+                    </div>
+                </div>
+                <div class="property-card">
+                    <div class="property-image">
+                        <span>Commercial Hub</span>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-price">₹15 Lakhs Onwards</div>
+                        <div class="property-location">Main Market Area, Kotkasim</div>
+                        <p>Strategic commercial spaces perfect for retail, offices, and business establishments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About PLA Developers</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>PLA Developers is a trusted name in real estate development, committed to creating exceptional properties that enhance communities and improve lives. Located strategically near Sainik Vishram Grah on Rewari-Kotkasim Road, we have established ourselves as a reliable partner for all real estate needs.</p>
+                    
+                    <p>Our team of experienced professionals brings together expertise in construction, design, project management, and customer service to deliver projects that exceed expectations. We focus on quality construction, innovative design, and sustainable development practices.</p>
+                    
+                    <p>With a deep understanding of the local market and customer preferences, we develop properties that offer excellent value for investment while providing comfortable and modern living spaces. Our commitment to transparency, quality, and customer satisfaction has earned us the trust of numerous satisfied clients.</p>
+                </div>
+                <div class="about-image">
+                    <span>Building Excellence Since Years</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h3>Location</h3>
+                            <p>Near Sainik Vishram Grah<br>Rewari-Kotkasim Rd, Kotkasim</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+91 7339794558</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <h3>Business Hours</h3>
+                            <p>Mon - Sat: 9:00 AM - 7:00 PM<br>Sunday: 10:00 AM - 5:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Get In Touch</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 PLA Developers. All rights reserved. | Building Dreams, Creating Futures</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact form handling
+        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will contact you soon.');
+            this.reset();
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(30, 60, 114, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards and property cards
+        document.querySelectorAll('.service-card, .property-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
